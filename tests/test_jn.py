@@ -59,6 +59,9 @@ def robust_run_jn(jn, timeout, retries):
 def cell_text(nb, cell):
     return nb["cells"][cell]["outputs"][0]["text"]
 
+def cell_output(nb, cell, part, data_type):
+    return nb["cells"][cell]["outputs"][part][data_type]
+
 jn_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 jn_file = os.path.join(jn_dir, '01-reverse-annealing.ipynb')
 
@@ -72,3 +75,51 @@ class TestJupyterNotebook(unittest.TestCase):
         nb, errors = robust_run_jn(jn_file, MAX_RUN_TIME, MAX_EMBEDDING_RETRIES)
 
         self.assertEqual(errors, [])
+
+        # Section Feature Availability, code cell 1
+        self.assertIn("Connected to sampler", cell_text(nb, 4))
+
+        # Section Feature Availability, code cell 2
+        self.assertIn("Maximum anneal-schedule points", cell_text(nb, 5))
+
+        # Section Generating a Random Problem, code cell 1
+        self.assertIn("Bias 0 assigned to", cell_text(nb, 8))
+
+        # Section Defining the Anneal Schedule, code cell 1
+        self.assertIn("Total anneal-schedule time", cell_text(nb, 10))
+
+        # Section Defining the Anneal Schedule, code cell 2
+        self.assertIn("image/png", cell_output(nb, 11, 0, "data"))
+
+        # Section Setting the Initial State, code cell 1
+        self.assertIn("Lowest energy found", cell_text(nb, 13))
+
+        # Section Running Reverse Anneal, code cell 1
+        self.assertIn("Lowest energy found", cell_text(nb, 15))
+
+        # Section Generating the 16-Bit Problem, code cell 3
+        self.assertIn("Energy of the global minimum", cell_text(nb, 22))
+
+        # Section Sampling Methods and Configuration, Subsection Pause Schedule, code cell 1
+        self.assertIn("image/png", cell_output(nb, 26, 0, "data"))
+
+        # Section Initial State for Reverse Anneal, code cell 1
+        self.assertIn("Energy of initial state", cell_text(nb, 28))
+
+        # Section Sampling, code cell 2
+        self.assertIn("samples from standard forward annealing", cell_text(nb, 37))
+
+        # Section Analysis, code cell 2
+        self.assertIn("Lowest energy found for each method", cell_text(nb, 42))
+
+        # Section Analysis, code cell 3
+        self.assertIn("image/png", cell_output(nb, 44, 0, "data"))
+
+        # Section Modulating the Reverse-Annealing Parameters, code cell 1
+        self.assertIn("Running reverse anneals with", cell_text(nb, 46))
+
+        # Section Modulating the Reverse-Annealing Parameters, code cell 2
+        self.assertIn("image/png", cell_output(nb, 48, 0, "data"))
+
+        # Section Exercise: Reverse Anneal for Various Parameters, code cell 1
+        self.assertIn("image/png", cell_output(nb, 52, 1, "data"))
