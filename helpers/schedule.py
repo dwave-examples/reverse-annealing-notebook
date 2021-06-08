@@ -1,5 +1,5 @@
 # coding: utf-8
-# Copyright 2020 D-Wave Systems Inc.
+# Copyright 2021 D-Wave Systems Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -12,8 +12,7 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
-#
-# =============================================================================
+
 
 def make_reverse_anneal_schedule(s_target=0.0, hold_time=10.0, ramp_back_slope=0.2, ramp_up_time=0.0201,
                                  ramp_up_slope=None):
@@ -55,4 +54,3 @@ def make_reverse_anneal_schedule(s_target=0.0, hold_time=10.0, ramp_back_slope=0
         pattern.append([round(ramp_time + hold_time + ramp_up_time, 4), round(1.0, 4)])
 
     return pattern
-

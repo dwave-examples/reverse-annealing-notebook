@@ -1,5 +1,5 @@
 # coding: utf-8
-# Copyright 2020 D-Wave Systems Inc.
+# Copyright 2021 D-Wave Systems Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -12,8 +12,6 @@
 #    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
-#
-# =============================================================================
 
 import matplotlib.pyplot as plt
 
@@ -21,7 +19,7 @@ def e_h_plot(pdf):
     """Plot energy and Hamming distances of consecutive samples."""
     columns = list(pdf.columns.values)
     rows = list(pdf.index.values)
-    from matplotlib.gridspec import GridSpec    
+    from matplotlib.gridspec import GridSpec
     figures = ['fig_energy', 'fig_hamming']
     gs = GridSpec(2, 2)
     for idx_fig, fig in enumerate(figures):
@@ -35,8 +33,6 @@ def e_h_plot(pdf):
             else:
                 f_ax = plt.subplot(gs[idx_anneal//2, idx_anneal%2])
             plt.title(rows[idx_anneal])
-            dots = f_ax.plot(pdf.loc[anneal,columns[idx_fig+1]], '.') 
+            dots = f_ax.plot(pdf.loc[anneal,columns[idx_fig+1]], '.')
             mean = f_ax.axhline(y=pdf.loc[anneal,columns[idx_fig+5]], color='r')
         fig.legend([mean],['Average '+ columns[idx_fig+1]], loc=4)
-
-
