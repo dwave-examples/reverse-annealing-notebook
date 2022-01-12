@@ -29,4 +29,4 @@ jupyter notebook
 
 ## License
 
-See [LICENSE](LICENSE) file.
+See [LICENSE](LICENSE.md) file.
