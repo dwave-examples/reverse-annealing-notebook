@@ -29,7 +29,7 @@ The notebook has the following sections:
 
 You can run this example without installation in cloud-based IDEs that support 
 the [Development Containers specification](https://containers.dev/supporting)
-(aka "devcontainers") such as [GitHub Codespaces](https://docs.github.com/codespaces).
+(aka "devcontainers").
 
 For development environments that do not support ``devcontainers``, install 
 requirements:
@@ -42,8 +42,13 @@ recommended.
 
 ## Usage
 
+Your development environment should be configured to 
+[access Leap’s Solvers](https://docs.ocean.dwavesys.com/en/stable/overview/sapi.html).
+You can see information about supported IDEs and authorizing access to your 
+Leap account [here](https://docs.dwavesys.com/docs/latest/doc_leap_dev_env.html).  
+
 The notebook can be opened by clicking on the 
-``01-reverse-annealing.ipynb`` file in Codespaces. 
+``01-reverse-annealing.ipynb`` file in VS Code-based IDEs. 
 
 To run a locally installed notebook:
 
