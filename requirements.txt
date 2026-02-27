@@ -1,8 +1,6 @@
-dwave-ocean-sdk>=4.3.0
-
-notebook~=7.0
-jupyter
-
-pandas
-matplotlib~=3.0
-seaborn
+dwave-ocean-sdk~=9.3
+jupyter~=1.1
+matplotlib~=3.10
+notebook~=7.5
+pandas~=2.3
+seaborn~=0.13
